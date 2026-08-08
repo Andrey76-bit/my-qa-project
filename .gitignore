@@ -32,3 +32,12 @@ test.db
 Общедоступные/
 Рабочий стол/
 Шаблоны/
+*.save
+*.save.*
+test_api.pyecho
+test_db.pycd
+test_db.pypython3
+test_fix.pypython3
+test_users.pypython3
+report.html
+venv/
