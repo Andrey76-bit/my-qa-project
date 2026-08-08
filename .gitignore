@@ -1,0 +1,34 @@
+# Кэш и временные файлы
+.cache/
+.mozilla/
+**/__pycache__/
+*.pyc
+*.swp
+*.save
+*.save.*
+
+# Базы данных и тестовые файлы
+test.db
+*.sqlite
+
+# Системные папки Linux
+.config/
+.local/
+.linuxmint/
+.ICEauthority
+.Xauthority
+.bash_history
+.dmrc
+.sudo_as_admin_successful
+.xsession-errors*
+
+# Личные папки (если не хочешь их публиковать)
+Андрей.
+Загрузки/
+Видео/
+Документы/
+Изображения/
+Музыка/
+Общедоступные/
+Рабочий стол/
+Шаблоны/
