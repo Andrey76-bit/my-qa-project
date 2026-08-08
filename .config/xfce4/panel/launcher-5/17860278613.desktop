@@ -1,0 +1,33 @@
+[Desktop Entry]
+Name=Thunar File Manager
+Name[ru]=Проводник Thunar
+Comment=Browse the filesystem with the file manager
+Comment[ru]=Просмотр файловой системы с помощью проводника
+GenericName=File Manager
+GenericName[ru]=Проводник
+Keywords=file manager;explorer;finder;browser;folders;directory;directories;partitions;drives;network;devices;rename;move;copy;delete;permissions;home;trash;
+Keywords[ru]=диспетчер файлов;проводник;поиск;просмотр;папки;папка;разделы;диски;сеть;устройства;переименовать;переместить;копировать;удалить;допуск;домой;корзина;
+Exec=thunar %U
+Icon=org.xfce.thunar
+Terminal=false
+StartupNotify=true
+Type=Application
+Categories=System;Core;GTK;FileTools;FileManager;
+MimeType=inode/directory;
+Actions=open-home;open-computer;open-trash;
+X-XFCE-Source=file:///usr/share/applications/thunar.desktop
+
+[Desktop Action open-home]
+Name=Home
+Name[ru]=Домашняя папка
+Exec=thunar %U
+
+[Desktop Action open-computer]
+Name=Computer
+Name[ru]=Компьютер
+Exec=thunar computer:///
+
+[Desktop Action open-trash]
+Name=Trash
+Name[ru]=Корзина
+Exec=thunar trash:///

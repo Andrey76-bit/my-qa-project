@@ -1,0 +1,33 @@
+import sqlite3
+
+# 1. Подключаемся к базе (файл test.db появится в папке со скриптом)
+conn = sqlite3.connect('test.db')
+cursor = conn.cursor()
+
+# 2. Создаём таблицу users и наполняем её данными
+cursor.execute('''
+    CREATE TABLE IF NOT EXISTS users (
+        id INTEGER PRIMARY KEY,
+        name TEXT,
+        email TEXT,
+        age INTEGER
+
+    )
+''')
+
+# 3. Вставляем пару записей (наши старые знакомые)
+cursor.execute("INSERT OR IGNORE INTO users VALUES (1, 'Иван Петров', 'ivan@test.com', 25)")
+cursor.execute("INSERT OR IGNORE INTO users VALUES (2, 'Анна Сидорова', 'anna@test.com', 30)")
+conn.commit()
+
+# 4. Делаем SELECT и выводим на экран
+cursor.execute("SELECT * FROM users")
+rows = cursor.fetchall()
+for row in rows:
+    print(row)
+
+
+
+
+
+

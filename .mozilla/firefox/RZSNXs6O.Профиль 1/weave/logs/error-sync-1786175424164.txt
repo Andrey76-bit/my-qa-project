@@ -1,0 +1,41 @@
+1786174594270	Sync.SyncScheduler	DEBUG	Next sync in 3600000 ms. (why=schedule)
+1786175148607	Sync.SyncScheduler	DEBUG	Network link status changed to "down". Offline?: false
+1786175148607	Sync.SyncScheduler	DEBUG	Clearing sync triggers and the global score.
+1786175148662	Sync.SyncScheduler	DEBUG	Next sync in 3600000 ms. (why=schedule)
+1786175148722	Sync.SyncScheduler	DEBUG	Network link status changed to "changed". Offline?: false
+1786175239952	Sync.SyncScheduler	DEBUG	Network link status changed to "changed". Offline?: false
+1786175241098	Sync.SyncScheduler	DEBUG	Network link status changed to "changed". Offline?: false
+1786175242642	Sync.SyncScheduler	DEBUG	Network link status changed to "up". Offline?: false
+1786175242642	Sync.SyncScheduler	DEBUG	Network link looks up. Syncing.
+1786175242680	Sync.SyncScheduler	DEBUG	Network link status changed to "changed". Offline?: false
+1786175242688	Sync.Service	DEBUG	User-Agent: Firefox/153.0.1 (Linux x86_64) FxSync/1.155.0.20260727124451.desktop
+1786175242688	Sync.Service	INFO	Starting sync at 2026-08-08 10:47:22 in browser session lAZdlhG5zPxb
+1786175242688	Sync.SyncScheduler	DEBUG	Clearing sync triggers and the global score.
+1786175242700	Sync.Status	INFO	Resetting Status.
+1786175242700	Sync.Status	DEBUG	Status.service: success.status_ok => success.status_ok
+1786175242701	FirefoxAccounts	DEBUG	FxAccountsProfileClient: Requested profile
+1786175242702	FirefoxAccounts	DEBUG	getOAuthToken enter
+1786175242703	FirefoxAccounts	TRACE	getCachedToken returning cached token
+1786175242703	FirefoxAccounts	DEBUG	getOAuthToken returning a cached token
+1786175242704	Services.Common.RESTRequest	DEBUG	GET request to https://profile.accounts.firefox.com/v1/profile
+1786175303695	Sync.SyncScheduler	DEBUG	Captive portal login success. Scheduling a sync.
+1786175303783	Sync.SyncScheduler	DEBUG	Next sync in 3000 ms. (why=captive-portal-login-success)
+1786175306801	Sync.Service	DEBUG	User-Agent: Firefox/153.0.1 (Linux x86_64) FxSync/1.155.0.20260727124451.desktop
+1786175306803	Sync.Service	INFO	Starting sync at 2026-08-08 10:48:26 in browser session lAZdlhG5zPxb
+1786175306804	Sync.Service	DEBUG	Exception calling anonymous function: LockException: Could not acquire lock. Label: "service.js: sync".(resource://services-sync/util.sys.mjs:43:5) JS Stack trace: LockException@util.sys.mjs:43:5
+throwLockException@util.sys.mjs:128:11
+WrappedLock@util.sys.mjs:143:15
+_lockedSync@service.sys.mjs:1392:6
+sync/<@service.sys.mjs:1366:18
+WrappedCatch@util.sys.mjs:113:27
+sync@service.sys.mjs:1367:7
+1786175306806	Sync.Service	INFO	Cannot start sync: already syncing?
+1786175334345	Services.Common.RESTRequest	DEBUG	GET https://profile.accounts.firefox.com/v1/profile failed: 2152398862 - NS_ERROR_NET_TIMEOUT
+1786175334348	FirefoxAccounts	ERROR	Background refresh of profile failed: {"name":"FxAccountsProfileClientError","code":null,"errno":998,"error":"NETWORK_ERROR","message":"[Exception... \"NS_ERROR_NET_TIMEOUT\"  nsresult: \"0x804b000e (NS_ERROR_NET_TIMEOUT)\"  location: \"JS frame :: resource://services-common/rest.sys.mjs :: onStopRequest :: line 478\"  data: no]"}
+1786175345875	Sync.SyncScheduler	DEBUG	Next sync in 3600000 ms. (why=schedule)
+1786175424147	Sync.Resource	WARN	GET request to https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/287989890/info/collections failed: [Exception... "The connection has timed out"  nsresult: "0x804b000e (NS_ERROR_NET_TIMEOUT)"  location: "<unknown>"  data: no] No traceback available
+1786175424148	Sync.Status	DEBUG	Status.sync: success.sync => error.login.reason.network
+1786175424148	Sync.Status	DEBUG	Status.service: success.status_ok => error.sync.failed
+1786175424148	Sync.ErrorHandler	ERROR	Sync encountered an error: [Exception... "The connection has timed out"  nsresult: "0x804b000e (NS_ERROR_NET_TIMEOUT)"  location: "<unknown>"  data: no] No traceback available
+1786175424152	Sync.SyncScheduler	DEBUG	Next sync in 3600000 ms. (why=reschedule)
+1786175424162	Sync.Service	DEBUG	Exception calling anonymous function: [Exception... "The connection has timed out"  nsresult: "0x804b000e (NS_ERROR_NET_TIMEOUT)"  location: "<unknown>"  data: no] No traceback available
