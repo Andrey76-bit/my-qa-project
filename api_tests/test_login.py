@@ -2,9 +2,7 @@ import pytest
 from selenium import webdriver
 from selenium.webdriver.firefox.service import Service
 from webdriver_manager.firefox import GeckoDriverManager
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
+from pages.login_page import LoginPage  # импортируем наш класс страницы
 
 @pytest.fixture
 def browser():
@@ -14,34 +12,17 @@ def browser():
     yield driver
     driver.quit()
 
-# --- Негативный тест (уже был) ---
 def test_login_with_invalid_password(browser):
-    browser.get("https://the-internet.herokuapp.com/login")
-    username_field = browser.find_element(By.ID, "username")
-    password_field = browser.find_element(By.ID, "password")
-    login_button = browser.find_element(By.CSS_SELECTOR, "button.radius")
-    username_field.send_keys("tomsmith")
-    password_field.send_keys("WrongPassword!")
-    login_button.click()
-    flash_message = WebDriverWait(browser, 10).until(
-        EC.presence_of_element_located((By.CSS_SELECTOR, ".flash.error"))
-    )
-    assert "Your password is invalid!" in flash_message.text
-    print("✅ Негативный тест пройден!")
+    # Создаём объект страницы
+    login_page = LoginPage(browser)
+    # Используем готовый метод
+    login_page.login_as("tomsmith", "WrongPassword!")
+    # Проверяем сообщение
+    assert "Your password is invalid!" in login_page.get_flash_message_text()
+    print("✅ Негативный тест пройден (POM)!")
 
-# --- Позитивный тест (НОВЫЙ) ---
 def test_login_with_valid_credentials(browser):
-    browser.get("https://the-internet.herokuapp.com/login")
-    username_field = browser.find_element(By.ID, "username")
-    password_field = browser.find_element(By.ID, "password")
-    login_button = browser.find_element(By.CSS_SELECTOR, "button.radius")
-    username_field.send_keys("tomsmith")
-    password_field.send_keys("SuperSecretPassword!")  # правильный пароль
-    login_button.click()
-
-    # Ждём появления элемента на странице, куда мы попадаем после логина (Secure Area)
-    success_message = WebDriverWait(browser, 10).until(
-        EC.presence_of_element_located((By.CSS_SELECTOR, ".flash.success"))
-    )
-    assert "You logged into a secure area!" in success_message.text
-    print("✅ Позитивный тест пройден!")
+    login_page = LoginPage(browser)
+    login_page.login_as("tomsmith", "SuperSecretPassword!")
+    assert "You logged into a secure area!" in login_page.get_flash_message_text()
+    print("✅ Позитивный тест пройден (POM)!")
