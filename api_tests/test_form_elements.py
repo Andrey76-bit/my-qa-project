@@ -10,7 +10,9 @@ from selenium.webdriver.support.ui import Select
 
 @pytest.fixture
 def browser():
-    driver = webdriver.Firefox(service=Service(GeckoDriverManager().install()))
+    options = webdriver.FirefoxOptions()
+    options.add_argument("--headless")
+    driver = webdriver.Firefox(service=Service(GeckoDriverManager().install()), options=options)
     yield driver
     driver.quit()
 
