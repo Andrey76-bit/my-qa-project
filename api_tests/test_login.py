@@ -14,6 +14,7 @@ def browser():
     yield driver
     driver.quit()
 
+# --- Негативный тест (уже был) ---
 def test_login_with_invalid_password(browser):
     browser.get("https://the-internet.herokuapp.com/login")
     username_field = browser.find_element(By.ID, "username")
@@ -26,4 +27,21 @@ def test_login_with_invalid_password(browser):
         EC.presence_of_element_located((By.CSS_SELECTOR, ".flash.error"))
     )
     assert "Your password is invalid!" in flash_message.text
-    print("✅ Тест пройден!")
+    print("✅ Негативный тест пройден!")
+
+# --- Позитивный тест (НОВЫЙ) ---
+def test_login_with_valid_credentials(browser):
+    browser.get("https://the-internet.herokuapp.com/login")
+    username_field = browser.find_element(By.ID, "username")
+    password_field = browser.find_element(By.ID, "password")
+    login_button = browser.find_element(By.CSS_SELECTOR, "button.radius")
+    username_field.send_keys("tomsmith")
+    password_field.send_keys("SuperSecretPassword!")  # правильный пароль
+    login_button.click()
+
+    # Ждём появления элемента на странице, куда мы попадаем после логина (Secure Area)
+    success_message = WebDriverWait(browser, 10).until(
+        EC.presence_of_element_located((By.CSS_SELECTOR, ".flash.success"))
+    )
+    assert "You logged into a secure area!" in success_message.text
+    print("✅ Позитивный тест пройден!")
