@@ -1,3 +1,4 @@
+from pages.alerts_page import AlertsPage
 import pytest
 import os
 from selenium import webdriver
@@ -7,6 +8,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import Select
+from pages.alerts_page import AlertsPage
 
 @pytest.fixture
 def browser():
@@ -46,30 +48,36 @@ def test_file_upload(browser):
     print("✅ Загрузка файла пройдена")
 
 def test_alert(browser):
-    browser.get("https://the-internet.herokuapp.com/javascript_alerts")
-    browser.find_element(By.CSS_SELECTOR, "button[onclick='jsAlert()']").click()
+    alerts = AlertsPage(browser)
+    alerts.go_to()
+    alerts.click_alert_button()
+
     alert = WebDriverWait(browser, 10).until(EC.alert_is_present())
     assert alert.text == "I am a JS Alert"
     alert.accept()
-    result = browser.find_element(By.ID, "result")
-    assert "You successfully clicked an alert" in result.text
-    print("✅ Простой алерт пройден")
+
+    assert "You successfully clicked an alert" in alerts.get_result_text()
+    print("✅ Простой алерт пройден (POM)")
 
 def test_confirm_alert(browser):
-    browser.get("https://the-internet.herokuapp.com/javascript_alerts")
-    browser.find_element(By.CSS_SELECTOR, "button[onclick='jsConfirm()']").click()
+    alerts = AlertsPage(browser)
+    alerts.go_to()
+    alerts.click_confirm_button()
+
     alert = WebDriverWait(browser, 10).until(EC.alert_is_present())
     alert.dismiss()
-    result = browser.find_element(By.ID, "result")
-    assert "You clicked: Cancel" in result.text
-    print("✅ Confirm алерт (Cancel) пройден")
+
+    assert "You clicked: Cancel" in alerts.get_result_text()
+    print("✅ Confirm алерт пройден (POM)")
 
 def test_prompt_alert(browser):
-    browser.get("https://the-internet.herokuapp.com/javascript_alerts")
-    browser.find_element(By.CSS_SELECTOR, "button[onclick='jsPrompt()']").click()
+    alerts = AlertsPage(browser)
+    alerts.go_to()
+    alerts.click_prompt_button()
+
     alert = WebDriverWait(browser, 10).until(EC.alert_is_present())
     alert.send_keys("Брат Андрей")
     alert.accept()
-    result = browser.find_element(By.ID, "result")
-    assert "You entered: Брат Андрей" in result.text
-    print("✅ Prompt алерт пройден")
+
+    assert "You entered: Брат Андрей" in alerts.get_result_text()
+    print("✅ Prompt алерт пройден (POM)")
