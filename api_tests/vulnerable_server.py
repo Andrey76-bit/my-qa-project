@@ -13,7 +13,6 @@ cursor.execute("INSERT INTO users (username, password) VALUES ('andrey', 'MyPass
 conn.commit()
 conn.close()
 
-# Словари переводов
 MESSAGES = {
     "ru": {
         "title": "Тестовый сервер",
@@ -24,6 +23,9 @@ MESSAGES = {
         "not_found": "Не найдено",
         "specify_id": "Укажите параметр id, например: /?id=1",
         "error": "Ошибка SQL: {}",
+        "enter_id": "Введите ID пользователя:",
+        "search": "Найти",
+        "current_lang": "Текущий язык:",
     },
     "en": {
         "title": "Test Server",
@@ -34,14 +36,73 @@ MESSAGES = {
         "not_found": "Not found",
         "specify_id": "Specify id parameter, e.g., /?id=1",
         "error": "SQL Error: {}",
+        "enter_id": "Enter user ID:",
+        "search": "Search",
+        "current_lang": "Current language:",
     }
 }
 
 DEFAULT_LANG = "ru"
 
+CSS = """
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 40px;
+    color: #333;
+}
+.container {
+    max-width: 600px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+h1 {
+    color: #2c3e50;
+}
+a {
+    color: #3498db;
+    text-decoration: none;
+    margin: 0 5px;
+}
+a:hover {
+    text-decoration: underline;
+}
+label {
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+}
+input[type="text"] {
+    width: 80%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+button {
+    padding: 8px 15px;
+    margin-left: 5px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+button:hover {
+    background-color: #2980b9;
+}
+.result {
+    margin-top: 20px;
+    padding: 10px;
+    background: #ecf0f1;
+    border-radius: 5px;
+}
+"""
 class RequestHandler(BaseHTTPRequestHandler):
     def _get_lang_from_cookie(self):
-        """Читаем язык из cookie"""
         if 'Cookie' in self.headers:
             cookie = cookies.SimpleCookie()
             cookie.load(self.headers['Cookie'])
@@ -52,14 +113,12 @@ class RequestHandler(BaseHTTPRequestHandler):
         return DEFAULT_LANG
 
     def _set_lang_cookie(self, lang):
-        """Устанавливаем cookie с выбранным языком"""
         self.send_header('Set-Cookie', f'lang={lang}; Path=/')
 
     def do_GET(self):
         parsed = urllib.parse.urlparse(self.path)
         params = urllib.parse.parse_qs(parsed.query)
 
-        # Проверяем, не пришёл ли запрос на смену языка
         if 'set_lang' in params:
             new_lang = params['set_lang'][0]
             if new_lang in MESSAGES:
@@ -72,10 +131,9 @@ class RequestHandler(BaseHTTPRequestHandler):
 
         msg = MESSAGES[lang]
 
-        # Получаем user_id из параметров
         user_id = params.get("id", [None])[0]
         if user_id is not None:
-            # УЯЗВИМО: прямая подстановка в SQL-запрос (для демонстрации)
+            # УЯЗВИМО: прямая подстановка в SQL-запрос
             query = f"SELECT username, password FROM users WHERE id = {user_id}"
             conn = sqlite3.connect("test_vuln.db")
             cursor = conn.cursor()
@@ -93,15 +151,21 @@ class RequestHandler(BaseHTTPRequestHandler):
         else:
             response = msg["specify_id"]
 
-        # Строим HTML-страницу с выбором языка
         html = f"""<html>
-<head><title>{msg['title']}</title></head>
+<head><title>{msg['title']}</title><style>{CSS}</style></head>
 <body>
+<div class="container">
     <h1>{msg['title']}</h1>
     <p>{msg['choose_language']} <a href="/?set_lang=ru">{msg['russian']}</a> | <a href="/?set_lang=en">{msg['english']}</a></p>
     <hr>
-    <p>{response}</p>
-    <p>Текущий язык: {lang}</p>
+    <form action="/" method="get">
+        <label for="id">{msg['enter_id']}</label>
+        <input type="text" id="id" name="id" placeholder="1">
+        <button type="submit">{msg['search']}</button>
+    </form>
+    <div class="result">{response}</div>
+    <p>{msg['current_lang']} {lang}</p>
+</div>
 </body>
 </html>"""
 
@@ -113,5 +177,5 @@ class RequestHandler(BaseHTTPRequestHandler):
 if __name__ == "__main__":
     server = HTTPServer(("127.0.0.1", 8000), RequestHandler)
     print("Сервер запущен на http://127.0.0.1:8000")
-    print("Для выбора языка используйте ссылки на странице или ?set_lang=ru / ?set_lang=en")
+    print("Для выбора языка используйте ссылки или форму")
     server.serve_forever()
