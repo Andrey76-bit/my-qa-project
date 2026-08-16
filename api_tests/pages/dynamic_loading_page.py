@@ -16,7 +16,10 @@ class DynamicLoadingPage:
     def click_start(self):
         """Нажимает кнопку Start для запуска загрузки"""
         self.driver.find_element(*self.start_button).click()
-
+    def click_start_twice(self):
+        """Нажимает кнопку Start дважды подряд (проверка на защиту от дурака)"""
+        self.driver.find_element(*self.start_button).click()
+        self.driver.find_element(*self.start_button).click()
     def get_finish_text(self, timeout=10):
         """Ждёт появления финишного элемента и возвращает его текст"""
         element = WebDriverWait(self.driver, timeout).until(
