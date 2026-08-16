@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT Start - Путь в IT для начинающих</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1 data-i18n="title">IT Start</h1>
+        <p data-i18n="subtitle">Твой проводник в мир технологий</p>
+        <div class="lang-switch">
+            <button onclick="setLanguage('ru')">Русский</button>
+            <button onclick="setLanguage('en')">English</button>
+        </div>
+    </header>
+
+    <main>
+        <section class="accordion-item">
+            <h2 class="section-professions accordion-header" data-i18n="professions_title">Выбери свою профессию</h2>
+            <div class="accordion-content">
+                <ul>
+                    <li class="sub-item">
+                        <span class="sub-header" data-sub="qa">QA Engineer — тестирование ПО</span>
+                        <div class="sub-content" id="sub-qa">
+                            <p data-i18n="qa_desc">QA-инженер проверяет программы на ошибки, пишет тесты и автоматизирует проверки. Очень востребованная профессия для входа в IT.</p>
+                        </div>
+                    </li>
+                    <li class="sub-item">
+                        <span class="sub-header" data-sub="dev">Разработчик (Python, JavaScript)</span>
+                        <div class="sub-content" id="sub-dev">
+                            <p data-i18n="dev_desc">Разработчик пишет код, создаёт сайты, приложения и сервисы. Python отлично подходит для бэкенда и автоматизации, JavaScript — для фронтенда.</p>
+                        </div>
+                    </li>
+                    <li class="sub-item">
+                        <span class="sub-header" data-sub="devops">DevOps — автоматизация и инфраструктура</span>
+                        <div class="sub-content" id="sub-devops">
+                            <p data-i18n="devops_desc">DevOps-инженер связывает разработку и эксплуатацию: настраивает CI/CD, Docker, Kubernetes, следит за стабильностью систем.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="accordion-item">
+            <h2 class="section-start accordion-header" data-i18n="start_title">С чего начать?</h2>
+            <div class="accordion-content">
+                <ol>
+                    <li data-i18n="start_1">Изучи основы программирования (Python или JavaScript).</li>
+                    <li data-i18n="start_2">Пройди базовый курс по выбранной профессии.</li>
+                    <li data-i18n="start_3">Практикуйся: пиши проекты, тесты, скрипты.</li>
+                    <li data-i18n="start_4">Собери портфолио на GitHub.</li>
+                    <li data-i18n="start_5">Откликайся на вакансии и не бойся отказов.</li>
+                </ol>
+            </div>
+        </section>
+
+        <section class="accordion-item">
+            <h2 class="section-history accordion-header" data-i18n="history_title">Моя история</h2>
+            <div class="accordion-content">
+                <p data-i18n="history_text">Привет! Я Андрей. Мой путь в IT начался с старого ноутбука ASUS и желания освоить новую профессию. Я установил Linux, научился работать с терминалом, изучил Python, SQL, Selenium, Playwright, Docker, CI/CD и основы безопасности. Сегодня у меня есть портфолио на GitHub и первые отклики от работодателей. Я верю, что каждый может войти в IT, если идти шаг за шагом и не сдаваться.</p>
+            </div>
+        </section>
+
+        <section class="accordion-item">
+            <h2 class="section-knowledge accordion-header" data-i18n="knowledge_title">Что нужно для старта</h2>
+            <div class="accordion-content">
+                <ul>
+                    <li class="sub-item">
+                        <span class="sub-header" data-sub="knowledge_python">Основы Python или JavaScript</span>
+                        <div class="sub-content" id="sub-knowledge_python">
+                            <p data-i18n="knowledge_python_desc">Начни с синтаксиса, переменных, циклов и функций. Python отлично подходит для новичков.</p>
+                        </div>
+                    </li>
+                    <li class="sub-item">
+                        <span class="sub-header" data-sub="knowledge_sql">SQL и базы данных</span>
+                        <div class="sub-content" id="sub-knowledge_sql">
+                            <p data-i18n="knowledge_sql_desc">Умение писать SELECT, JOIN, GROUP BY помогает тестировщику проверять данные.</p>
+                        </div>
+                    </li>
+                    <li class="sub-item">
+                        <span class="sub-header" data-sub="knowledge_testing">Тестирование ПО (ручное и автоматизация)</span>
+                        <div class="sub-content" id="sub-knowledge_testing">
+                            <p data-i18n="knowledge_testing_desc">Изучи тест-дизайн, баг-репорты и основы Selenium/Playwright — это сердце QA.</p>
+                        </div>
+                    </li>
+                    <li class="sub-item">
+                        <span class="sub-header" data-sub="knowledge_git">Работа с Git и GitHub</span>
+                        <div class="sub-content" id="sub-knowledge_git">
+                            <p data-i18n="knowledge_git_desc">Git нужен для контроля версий, совместной работы и портфолио. Начни с commit, push, branch.</p>
+                        </div>
+                    </li>
+                    <li class="sub-item">
+                        <span class="sub-header" data-sub="knowledge_cicd">Понимание CI/CD и Docker</span>
+                        <div class="sub-content" id="sub-knowledge_cicd">
+                            <p data-i18n="knowledge_cicd_desc">CI/CD автоматизирует проверки, Docker упаковывает окружение. Очень ценятся в командах.</p>
+                        </div>
+                    </li>
+                    <li class="sub-item">
+                        <span class="sub-header" data-sub="knowledge_english">Английский на уровне чтения документации</span>
+                        <div class="sub-content" id="sub-knowledge_english">
+                            <p data-i18n="knowledge_english_desc">Хотя бы базовый английский открывает доступ к лучшим материалам и удалённым вакансиям.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p data-i18n="footer">Сделано с душой для начинающих айтишников</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

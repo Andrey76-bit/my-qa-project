@@ -1,0 +1,55 @@
+body {
+    font-family: Arial, sans-serif;
+    background: radial-gradient(circle at 20% 30%, #1a2a6c, #0b0f1a);
+    color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-image: 
+        radial-gradient(1px 1px at 20% 10%, #fff 50%, transparent 50%),
+        radial-gradient(1px 1px at 40% 30%, #fff 50%, transparent 50%),
+        radial-gradient(1.5px 1.5px at 70% 20%, #fff 50%, transparent 50%),
+        radial-gradient(1px 1px at 90% 50%, #fff 50%, transparent 50%),
+        radial-gradient(1.5px 1.5px at 10% 70%, #fff 50%, transparent 50%),
+        radial-gradient(1px 1px at 60% 80%, #fff 50%, transparent 50%),
+        radial-gradient(1.5px 1.5px at 80% 90%, #fff 50%, transparent 50%),
+        radial-gradient(1px 1px at 30% 100%, #fff 50%, transparent 50%);
+    background-repeat: repeat;
+    background-size: 200px 200px;
+    pointer-events: none;
+    z-index: 0;
+}
+section, header, footer { position: relative; z-index: 1; }
+header { background-color: #2c3e50; color: white; padding: 20px; text-align: center; }
+header h1 { margin: 0; font-size: 2.5em; color: #2ecc71; }
+header p { margin: 5px 0 0; font-size: 1.2em; opacity: 0.8; }
+.lang-switch { margin-top: 15px; }
+.lang-switch button { background-color: #2ecc71; border: none; color: #0b0f1a; padding: 8px 16px; margin: 0 5px; border-radius: 5px; cursor: pointer; }
+.lang-switch button:hover { background-color: #27ae60; }
+main { max-width: 800px; margin: 20px auto; padding: 0 20px; }
+section.accordion-item { background: rgba(20,30,50,0.75); padding: 0; margin-bottom: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.3); backdrop-filter: blur(5px); overflow: hidden; }
+.accordion-header { padding: 20px; cursor: pointer; margin: 0; transition: background-color 0.3s; }
+.accordion-header:hover { background-color: rgba(255,255,255,0.05); }
+.accordion-content { padding: 0 20px; max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out, padding 0.3s ease-out; }
+.accordion-content.active { padding: 0 20px 20px; max-height: 800px; }
+/* Вложенные подпункты */
+.sub-item { margin: 5px 0; }
+.sub-header { display: inline-block; color: #f0f0f0; cursor: pointer; text-decoration: underline dotted; padding: 2px 0; }
+.sub-header:hover { color: #2ecc71; }
+.sub-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; background: rgba(0,0,0,0.2); border-radius: 4px; padding: 0 10px; }
+.sub-content.active { max-height: 300px; padding: 10px; }
+.sub-content p { margin: 0; }
+.section-professions { color: #2ecc71; }
+.section-start { color: #3498db; }
+.section-history { color: #e67e22; }
+.section-knowledge { color: #e84393; }
+ul, ol { padding-left: 20px; }
+a { color: #2ecc71; text-decoration: none; }
+a:hover { color: #27ae60; }
+footer { text-align: center; padding: 20px; background-color: #2c3e50; color: white; }
